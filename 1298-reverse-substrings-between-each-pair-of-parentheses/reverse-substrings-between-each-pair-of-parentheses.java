@@ -1,26 +1,31 @@
 class Solution {
     public String reverseParentheses(String s) {
         int n = s.length();
-        int[] link = new int[n];
-        Stack<Integer> stk = new Stack<>();
+        Stack<Integer> openBracket = new Stack<>();
+        int[] door = new int[n];
+
+        // First pass: Pair up parentheses
         for (int i = 0; i < n; i++) {
-            if (s.charAt(i) == '(')
-                stk.push(i);
-            else if (s.charAt(i) == ')') {
-                link[i] = stk.pop();
-                link[link[i]] = i;
+            if (s.charAt(i) == '(') {
+                openBracket.push(i);
+            } else if (s.charAt(i) == ')') {
+                int j = openBracket.pop();
+                door[i] = j;
+                door[j] = i;
             }
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0, dir = 1; i < n; i += dir) {
-            if (s.charAt(i) >= 'a')
-                sb.append(s.charAt(i));
-            else {
-                i = link[i];
-                dir = -dir;
+
+        // Second pass: Build the result string
+        StringBuilder result = new StringBuilder();
+        int direction = 1; // Left to Right
+        for (int i = 0; i < n; i += direction) {
+            if (s.charAt(i) == '(' || s.charAt(i) == ')') {
+                i = door[i];
+                direction = -direction;
+            } else {
+                result.append(s.charAt(i));
             }
         }
-        
-        return sb.toString();
+        return result.toString();
     }
-}
+} 
