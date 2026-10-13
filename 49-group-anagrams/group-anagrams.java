@@ -1,6 +1,6 @@
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String , List<String>> mp = new HashMap<>();
+        Map<String, List<String>> mp = new HashMap<>();
         for(String st : strs){
             char[] ch = st.toCharArray();
             Arrays.sort(ch);
