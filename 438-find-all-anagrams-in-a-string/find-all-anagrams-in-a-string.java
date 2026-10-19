@@ -1,4 +1,3 @@
-
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> ans = new ArrayList<>();
@@ -14,12 +13,10 @@ class Solution {
                 freq[s.charAt(left) - 'a']++;
                 left++;
             }
-
             if (right - left + 1 == p.length() && allZero(freq)) {
                 ans.add(left);
             }
         }
-
         return ans;
     }
     private boolean allZero(int[] freq) {
