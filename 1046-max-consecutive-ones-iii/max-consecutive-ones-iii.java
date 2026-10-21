@@ -4,7 +4,7 @@ class Solution {
         int count = 0;
         int i = 0, j = 0;
         while(j < nums.length){
-            if(nums[j] == 0 ){
+            if(nums[j] == 0 && kc >= 0){
                 kc--;
             }
             while(kc < 0 && kc <= k){
